@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0.0)
 
-project(cpp-demo VERSION 0.1.0)
+project(cgal-wasm-demo VERSION 0.1.0)
 set(CMAKE_CXX_STANDARD 17)
 
 # CGAL.
@@ -14,7 +14,7 @@ endif()
 
 include_directories( includes )
 
-set( MY_EXE cpp-demo )
+set( MY_EXE cgal-demo )
 add_executable( ${MY_EXE} cgal.cpp )
 target_link_libraries( ${MY_EXE} ${CGAL_LIBRARIES} )
 

@@ -1,0 +1,14 @@
+[X] - install wsl 
+[X] - get git to work on wsl
+[X] - get vscode to work with wsl
+[X] - install gdal
+[X] - install cgal
+[X] - configure vscode or clion for dealing with C++ 
+[X] - make a cpp project 
+[X] - print a "hello world"
+[X] - how to work with cmake? 
+[X] - how to get emcc working in wsl
+[X] - fix bug emcc
+  - fixed: it was using old windows env variables. A problem with installing both a windows & wsl version of emcc
+[x] - build a dumb C++ library with emcc. 
+

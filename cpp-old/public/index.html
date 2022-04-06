@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <script src="./lib.js"></script> -->
+    <script src="./quick_example.js"></script>
+    <script type="module">
+        // let something = await import("./quick_example.js");
+
+        // console.log(Module);
+
+        // console.log(something);
+
+        async function main() {
+            let res = await Module();
+            console.log(res);
+            console.log(res.lerp(1,2,3));
+        }
+        
+        window.onload = main;
+
+    </script>
+</body>
+</html>

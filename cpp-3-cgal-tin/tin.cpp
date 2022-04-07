@@ -50,34 +50,44 @@ using namespace emscripten;
 //     dsm_ofile.close();  
 // }
 
-int read_points(std::string points) {
-
-    // bool CGAL::IO::read_PLY(points,
-	// 	PointOutputIterator  	output,
-	// 	const NamedParameters &  	np 
-	// ) 	
-    // return 10;
-    return 0;
-}
-
-std::string write_points() {
+std::vector<Point_3> get_some_points() {
     std::vector<Point_3> points; // store points
     for (int i = 0; i < 10; ++ i) {
         points.push_back(Point_3 (i, 1.0 - i, 1.0 / (i + 1.0)));
     }
+    return points;
+}
+
+// empty if failure to read
+std::vector<Point_3> read_points(std::string xyz) {
+    
+    std::stringstream stream(xyz);
+    std::vector<Point_3> points;
+    bool success = CGAL::read_xyz_points(stream, std::back_inserter(points));
+    if (!success) {
+        std::cout << "could not read xyz" << std::endl; 
+    }
+    return points;
+}
+
+std::string write_points(std::vector<Point_3> points) {
     std::stringstream stream;
     CGAL::write_xyz_points(stream, points);
     // CGAL::IO::write_XYZ(stream, &points, nullptr); // GRRRRRRRR.... OUTDATED DOCS....
     return stream.str();
 }
 
+std::string demo() {
 
-std::string get_some_string() {
-    return "henkenkaasmoeder";
+    auto points = get_some_points();
+    auto str = write_points(points);
+    auto copy = read_points(str);
+    auto copy_str= write_points(copy);
+    return str;
 }
 
 EMSCRIPTEN_BINDINGS(embind_demo) {
-    function("getSomeString", &get_some_string);
+    function("demo", &demo);
     function("readPoints", &read_points);
     function("writePoints", &write_points);
 }

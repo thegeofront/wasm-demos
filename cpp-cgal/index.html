@@ -4,21 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMBIND</title>
+    <title>CGAL</title>
 </head>
 <body>
     <!-- "official" method -->
-    <script src="./lerp.js"></script>
+    <script src="./cgal.js"></script>
     <script type="module">
         async function main() {
             
             const mod = await Module();
-
-            const { DoubleVector, lerp, multiLerp } = mod;
+            window.mod = mod;
+            
+            const { DoubleVector, lerp, multiLerp, something, distance } = mod;
 
             // we can now use all exported methods
             let result = mod.lerp(1,2,0.5);
             document.body.innerText = `the answer is ${result}`;
+
+            console.log(something(1, 2));
 
             // filling a vector with js data
             let vec = new DoubleVector();

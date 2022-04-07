@@ -1,9 +1,14 @@
 // quick_example.cpp
 #include <string>
 #include <vector>
-#include <CGAL/Cartesian.h>
 
-// typedef CGAL::Exact_predicates_inexact_constructions_kernel K;
+#include <math.h>
+
+#include <CGAL/Cartesian.h>
+#include <CGAL/squared_distance_2.h> 
+
+#include <emscripten/bind.h>
+
 typedef CGAL::Cartesian<double> K;
 typedef K::Point_2 Point_2;
 typedef K::Vector_2 Vector_2;
@@ -17,10 +22,11 @@ bool something(double x, double y) {
     return (p == q);
 }
 
-
-#include <emscripten/bind.h>
-
-using namespace emscripten;
+double distance(double x1, double y1, double x2, double y2) {
+    Point_2 p(x1, y1), q(x2, y2);
+    double dis_squared = CGAL::squared_distance(p, q);
+    return std::pow(dis_squared, 0.5);
+}
 
 typedef double N;
 
@@ -45,7 +51,7 @@ std::vector<N> returnVectorData () {
 }
 
 
-
+using namespace emscripten;
 
 EMSCRIPTEN_BINDINGS(embind_demo) {
     // types
@@ -55,6 +61,8 @@ EMSCRIPTEN_BINDINGS(embind_demo) {
     function("returnVectorData", &returnVectorData);
     function("multiLerp", &multiLerp);
     function("lerp", &lerp);
+    function("something", &something);
+    function("distance", &distance);
 }
 
 int main() {

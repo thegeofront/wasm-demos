@@ -4,13 +4,15 @@ main: build-using-local-includes
 
 install: 
 	@echo "-------------------------------------------------------------------"
-	@echo " TODO: install CGAL & boost, and put them in the ./includes folder "
+	@echo " please download CGAL & boost, and put them in the wasm-demos/includes folder: "
 	@echo "-------------------------------------------------------------------"
+	@echo "$ cp -R /usr/include/cgal ../include"
+	@echo "$ cp -R /usr/include/boost ../include"
 
 build-using-local-includes: 
 	@echo "building cgal.cpp..."
 	@emcc cgal.cpp \
-	-I/home/feenster/dev/geofront/wasm-demos/cpp-cgal/includes/ \
+	-I/home/feenster/dev/geofront/wasm-demos/_includes/ \
 	-O3 \
 	-lembind \
 	-o cgal.js \

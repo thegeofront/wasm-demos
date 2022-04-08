@@ -8,18 +8,17 @@
 </head>
 <body>
     <!-- "official" method -->
-    <script src="./cgal.js"></script>
     <script type="module">
         async function main() {
             
-            const mod = await Module();
+            const mod = await (await import("./cgal.mjs")).default();
             window.mod = mod;
             
             const { DoubleVector, lerp, multiLerp, something, distance } = mod;
 
             // we can now use all exported methods
-            let result = mod.lerp(1,2,0.5);
-            document.body.innerText = `the answer is ${result}`;
+            let result = mod.distance(0.0, 0.0, 3.0, 4.0);
+            document.body.innerText = `the distance between points (0, 0) and (3, 4) is ${result}`;
 
             console.log(something(1, 2));
 

@@ -15,7 +15,7 @@ build-using-local-includes:
 	-I/home/feenster/dev/geofront/wasm-demos/_includes/ \
 	-O3 \
 	-lembind \
-	-o cgal.js \
+	-o cgal.mjs \
 	-s MODULARIZE=1 \
 	-DCGAL_NO_GMP=1 \
 	-DCGAL_DISABLE_ROUNDING_MATH_CHECK

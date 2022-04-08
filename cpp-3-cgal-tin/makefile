@@ -11,12 +11,12 @@ install:
 
 build-using-local-includes: 
 	@echo "building tin.cpp..."
-	@emcc tin.cpp \
+	@emcc -O3 \
 	-I/home/feenster/dev/geofront/wasm-demos/_includes/ \
-	-O3 \
 	-lembind \
 	-o tin.js \
 	-s MODULARIZE=1 \
 	-DCGAL_NO_GMP=1 \
-	-DCGAL_DISABLE_ROUNDING_MATH_CHECK
+	-DCGAL_DISABLE_ROUNDING_MATH_CHECK \
+	tin.cpp 
 	@echo "done!"

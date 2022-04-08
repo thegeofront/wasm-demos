@@ -8,11 +8,10 @@
 </head>
 <body>
     <!-- "official" method -->
-    <script type="module" src="./lerp.js"></script>
     <script type="module">
         async function main() {
             
-            const mod = await Module();
+            const mod = await (await import("./lerp.mjs")).default();
 
             const { DoubleVector, lerp, multiLerp } = mod;
 

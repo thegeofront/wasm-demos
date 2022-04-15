@@ -23,18 +23,18 @@
     <!-- <script src="./file.js"></script> -->
     <script type="module">
 
-        import { loadBlob } from "./file.js";
+        import { Files } from "./files.js";
 
         let get = (str) => document.querySelector(str);
 
         // set up file entry with 
         get("#formFile").oninput = async (e) => {
-            let blob = await loadBlob(e.target.files[0]);
-            processBlob(blob);
+            let text = await Files.loadText(e.target.files[0]);
+            processText(text);
         }
 
-        function processBlob(blob) {
-            let num = mod.readLaz(blob);
+        function processText(text) {
+            let num = mod.readLaz(text);
             get("#message").innerText = `you gave me ${num} points.`;
             get("#button").removeAttribute("disabled");
 

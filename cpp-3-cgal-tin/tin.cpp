@@ -6,13 +6,15 @@
 // #include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
 #include <CGAL/Projection_traits_xy_3.h>
 #include <CGAL/Delaunay_triangulation_2.h>
-#include <CGAL/Surface_mesh.h>
 #include <CGAL/Point_set_3.h>
 
 #include <CGAL/IO/read_xyz_points.h>
 #include <CGAL/IO/write_xyz_points.h>
 
-#include <CGAL/property_map.h>
+#include <CGAL/Surface_mesh.h>
+#include <CGAL/Surface_mesh/IO/PLY.h>
+
+// #include <CGAL/property_map.h>
 
 // PROBLEMS: because this means compiling lastools
 // #include <CGAL/IO/read_las_points.h>
@@ -121,20 +123,19 @@ std::string write_points(std::vector<Point_3> points) {
 }
 
 std::string dsm_from_points(std::string xyz) {
+    
     // in
-    // Point_set_3 points = read_points(xyz);
+    std::vector<Point_3> points = read_points(xyz);
 
     // Create DSM
-    // TIN dsm (points.points().begin(), points.points().end());
-    // Mesh dsm_mesh;
-    // CGAL::copy_face_graph(dsm, dsm_mesh);
+    TIN dsm (points.begin(), points.end());
+    Mesh dsm_mesh;
+    CGAL::copy_face_graph(dsm, dsm_mesh);
     
-    // out
-    // std::ofstream dsm_ofile("dsm.ply", std::ios_base::binary);
-    // CGAL::IO::set_binary_mode dsm_ofile);
-    // CGAL::IO::write_PLY(dsm_ofile, dsm_mesh);
-    // dsm_ofile.close();  
-    return "";
+    // write it as a ply
+    std::stringstream plystream;
+    CGAL::write_ply(plystream, dsm_mesh);
+    return plystream.str();
 }
 
 std::string demo() {

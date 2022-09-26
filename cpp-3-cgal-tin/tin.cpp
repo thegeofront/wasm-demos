@@ -151,6 +151,7 @@ EMSCRIPTEN_BINDINGS(embind_demo) {
     function("demo", &demo);
     function("readPoints", &read_points);
     function("writePoints", &write_points);
+    // function("dsm_from_points", &dsm_from_points);
     // function("getInt8Array", &getInt8Array);
     // function("readLaz", &read_laz);
 }

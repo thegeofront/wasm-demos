@@ -34,11 +34,13 @@
         }
 
         function processText(text) {
-            let num = mod.readLaz(text);
-            get("#message").innerText = `you gave me ${num} points.`;
-            get("#button").removeAttribute("disabled");
+            // let num = mod.readLaz(text);
+            // get("#message").innerText = `you gave me ${num} points.`;
+            // get("#button").removeAttribute("disabled");
 
             // TODO to dsm
+            let res = mod.demo();
+            console.log(res);
         }
 
         async function main() {    

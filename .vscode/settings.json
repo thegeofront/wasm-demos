@@ -89,5 +89,6 @@
         "utility": "cpp",
         "cinttypes": "cpp",
         "*.ipp": "cpp"
-    }
+    },
+    "liveServer.settings.port": 5501
 }
